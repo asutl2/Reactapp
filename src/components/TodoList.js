@@ -1,6 +1,10 @@
-//TodoList.jsファイルはsrcディレクトリの下にcomponentsディレクトリを作成してその下に保存.
-//TodoList.jsはpropsのtodosを受け取りtodosを展開して表示し、更新、削除の関数を設定しています。
 import React from 'react';
+import { Box } from '@chakra-ui/react';
+import { Button } from '@chakra-ui/react';
+import { Center } from '@chakra-ui/react';
+import { HStack } from '@chakra-ui/react'
+import { Spacer } from '@chakra-ui/react'
+import { FaTrashCan } from "react-icons/fa6";
 
 const TodoList = ({ todos, setTodos }) => {
   const handleRemoveTask = (index) => {
@@ -20,29 +24,30 @@ const TodoList = ({ todos, setTodos }) => {
   };
 
   return (
-    <ul>
-      {todos.map((todo, index) => (
-        <li
-          key={index}
-          style={{
-            textDecoration: todo.isCompleted ? 'line-through' : 'none',
-          }}
-        >
-          <input
-            type="checkbox"
-            checked={todo.isCompleted}
-            onChange={() => handleUpdateTask(index)}
-          />
-          {todo.task}
-          <span
-            onClick={() => handleRemoveTask(index)}
-            style={{ cursor: 'pointer' }}
-          >
-            X
-          </span>
-        </li>
-      ))}
-    </ul>
+    <Center>
+      <Box w={'500px'} p={'3'} bg={'gray.100'}>
+        {todos.map((todo, index) => (
+          <Box key={index} style={{ textDecoration: todo.isCompleted ? 'line-through' : 'none',}}>
+              <HStack>
+                <Button>
+                    <input 
+                      type="checkbox"
+                      checked={todo.isCompleted}
+                      onChange={() => handleUpdateTask(index)}
+                    />
+                </Button>
+                <Box>
+                    {todo.task}
+                </Box>
+                <Spacer/>  
+                <Box>
+                    <FaTrashCan onClick={() => handleRemoveTask(index)} style={{ cursor: 'pointer' }}/>      
+                </Box>
+              </HStack> 
+          </Box>
+        ))}
+      </Box>
+    </Center>
   );
 };
 

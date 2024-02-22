@@ -1,6 +1,10 @@
-//AddTodo.jsファイルではタスクの追加の処理のみ記述します。
-
+//AddTodo.jsファイルではタスクの追加の処理を記述。
 import { useState } from 'react';
+import { Box } from '@chakra-ui/react';
+import { Text } from '@chakra-ui/react'
+import { Center } from '@chakra-ui/react';
+import { Input } from '@chakra-ui/react'
+import { VStack } from '@chakra-ui/react'
 
 const AddTodo = ({ setTodos }) => {
   const [task, setTask] = useState('');
@@ -17,10 +21,20 @@ const AddTodo = ({ setTodos }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      Add Task :
-      <input value={task} placeholder="Add New Task" onChange={handleNewTask} />
-    </form>
+    <Center>
+        <Box>
+            <form onSubmit={handleSubmit}>
+                <VStack spacing={'10px'}>
+                    <Text fontSize={'mz'} color={'cyan.500'}>Created by Asuka Miyazaki</Text>
+                    <Input value={task} 
+                        placeholder='Click Here and Add Task' 
+                        onChange={handleNewTask}
+                        focusBorderColor='teal.400'
+                        errorBorderColor='crimson' />
+                </VStack>       
+            </form>
+        </Box>
+    </Center>
   );
 };
 

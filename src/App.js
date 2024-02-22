@@ -1,10 +1,11 @@
 import Todo from './components/Todo';
+import { Box } from "@chakra-ui/react"
 
 function App() {
   return (
-    <div style={{ margin: "2em"}}>
-      <Todo />
-    </div>
+      <Box>
+        <Todo />
+      </Box>
   );
 }
 
